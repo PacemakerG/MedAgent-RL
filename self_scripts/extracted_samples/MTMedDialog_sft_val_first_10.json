@@ -1,0 +1,812 @@
+[
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "You are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\n",
+        "role": "system"
+      },
+      {
+        "content": "Patient's description: Diarrhea, loss of appetite, bloody stool (male, 37 years old)\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.\n",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "ground_truth": {
+        "diagnosis": "Based on your symptoms, it appears you have enteritis, likely caused by an infection or irritation in your digestive tract.",
+        "recommendation": "I recommend continuing your current medications and adding Montmorillonite powder to help manage diarrhea. Avoid spicy foods and stick to a bland diet like porridge for the next few days. If symptoms worsen or the bloody stool persists, please seek immediate medical attention to rule out gastrointestinal bleeding or other complications."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, how long has this been going on?"
+          ],
+          "patient_response": [
+            "Hello,",
+            "The bloody stool started today, but the diarrhea has been going on for three days. I had a fever and diarrhea on September 27th."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Is it fresh blood? Did you eat anything unclean before this happened?"
+          ],
+          "patient_response": [
+            "It's not fresh blood, and I haven’t eaten anything unusual. I eat at the workplace cafeteria, and everyone else is fine."
+          ]
+        },
+        {
+          "doctor_question": [
+            "How many bowel movements per day? How high was the fever? Do you feel nauseous? What color is the blood? Is the stool black?"
+          ],
+          "patient_response": [
+            "From 4 PM today until now, I’ve been to the bathroom seven times.",
+            "On the 27th, it was 7 to 9 times a day; on the 28th, 5 to 6 times; and today, it’s been about ten times."
+          ]
+        },
+        {
+          "doctor_question": [
+            "If it’s not fresh blood, is it black stool?",
+            "How high was the fever, and are there any other symptoms?"
+          ],
+          "patient_response": [
+            "Not very black, slightly greenish. The highest fever was 38.4°C.",
+            "Also, I feel weak in the legs. The fever subsided by the 28th."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 2
+    },
+    "response": "<think> The patient presents with diarrhea, loss of appetite, and bloody stool. To narrow down the diagnosis, I need to know the duration of symptoms and any associated factors. </think>\n<answer>Question: Hello, how long has this been going on?</answer>"
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "You are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\n",
+        "role": "system"
+      },
+      {
+        "content": "Patient's description: Diarrhea, loss of appetite, bloody stool (male, 37 years old)\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.\n",
+        "role": "user"
+      },
+      {
+        "content": "<think> The patient presents with diarrhea, loss of appetite, and bloody stool. To narrow down the diagnosis, I need to know the duration of symptoms and any associated factors. </think>\n<answer>Question: Hello, how long has this been going on?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "Hello, The bloody stool started today, but the diarrhea has been going on for three days. I had a fever and diarrhea on September 27th.",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "ground_truth": {
+        "diagnosis": "Based on your symptoms, it appears you have enteritis, likely caused by an infection or irritation in your digestive tract.",
+        "recommendation": "I recommend continuing your current medications and adding Montmorillonite powder to help manage diarrhea. Avoid spicy foods and stick to a bland diet like porridge for the next few days. If symptoms worsen or the bloody stool persists, please seek immediate medical attention to rule out gastrointestinal bleeding or other complications."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, how long has this been going on?"
+          ],
+          "patient_response": [
+            "Hello,",
+            "The bloody stool started today, but the diarrhea has been going on for three days. I had a fever and diarrhea on September 27th."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Is it fresh blood? Did you eat anything unclean before this happened?"
+          ],
+          "patient_response": [
+            "It's not fresh blood, and I haven’t eaten anything unusual. I eat at the workplace cafeteria, and everyone else is fine."
+          ]
+        },
+        {
+          "doctor_question": [
+            "How many bowel movements per day? How high was the fever? Do you feel nauseous? What color is the blood? Is the stool black?"
+          ],
+          "patient_response": [
+            "From 4 PM today until now, I’ve been to the bathroom seven times.",
+            "On the 27th, it was 7 to 9 times a day; on the 28th, 5 to 6 times; and today, it’s been about ten times."
+          ]
+        },
+        {
+          "doctor_question": [
+            "If it’s not fresh blood, is it black stool?",
+            "How high was the fever, and are there any other symptoms?"
+          ],
+          "patient_response": [
+            "Not very black, slightly greenish. The highest fever was 38.4°C.",
+            "Also, I feel weak in the legs. The fever subsided by the 28th."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 2
+    },
+    "response": "<think> The patient reports bloody stool today and diarrhea for three days, with a prior fever. I need to clarify the nature of the blood and potential causes, such as foodborne illness. </think>\n<answer>Question: Is it fresh blood? Did you eat anything unclean before this happened?</answer>"
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "You are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\n",
+        "role": "system"
+      },
+      {
+        "content": "Patient's description: Diarrhea, loss of appetite, bloody stool (male, 37 years old)\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.\n",
+        "role": "user"
+      },
+      {
+        "content": "<think> The patient presents with diarrhea, loss of appetite, and bloody stool. To narrow down the diagnosis, I need to know the duration of symptoms and any associated factors. </think>\n<answer>Question: Hello, how long has this been going on?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "Hello, The bloody stool started today, but the diarrhea has been going on for three days. I had a fever and diarrhea on September 27th.",
+        "role": "user"
+      },
+      {
+        "content": "<think> The patient reports bloody stool today and diarrhea for three days, with a prior fever. I need to clarify the nature of the blood and potential causes, such as foodborne illness. </think>\n<answer>Question: Is it fresh blood? Did you eat anything unclean before this happened?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "It's not fresh blood, and I haven’t eaten anything unusual. I eat at the workplace cafeteria, and everyone else is fine.",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "ground_truth": {
+        "diagnosis": "Based on your symptoms, it appears you have enteritis, likely caused by an infection or irritation in your digestive tract.",
+        "recommendation": "I recommend continuing your current medications and adding Montmorillonite powder to help manage diarrhea. Avoid spicy foods and stick to a bland diet like porridge for the next few days. If symptoms worsen or the bloody stool persists, please seek immediate medical attention to rule out gastrointestinal bleeding or other complications."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, how long has this been going on?"
+          ],
+          "patient_response": [
+            "Hello,",
+            "The bloody stool started today, but the diarrhea has been going on for three days. I had a fever and diarrhea on September 27th."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Is it fresh blood? Did you eat anything unclean before this happened?"
+          ],
+          "patient_response": [
+            "It's not fresh blood, and I haven’t eaten anything unusual. I eat at the workplace cafeteria, and everyone else is fine."
+          ]
+        },
+        {
+          "doctor_question": [
+            "How many bowel movements per day? How high was the fever? Do you feel nauseous? What color is the blood? Is the stool black?"
+          ],
+          "patient_response": [
+            "From 4 PM today until now, I’ve been to the bathroom seven times.",
+            "On the 27th, it was 7 to 9 times a day; on the 28th, 5 to 6 times; and today, it’s been about ten times."
+          ]
+        },
+        {
+          "doctor_question": [
+            "If it’s not fresh blood, is it black stool?",
+            "How high was the fever, and are there any other symptoms?"
+          ],
+          "patient_response": [
+            "Not very black, slightly greenish. The highest fever was 38.4°C.",
+            "Also, I feel weak in the legs. The fever subsided by the 28th."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 2
+    },
+    "response": "<think> The blood is not fresh, and no unusual food intake. I need more details about bowel movement frequency, fever severity, and other symptoms like nausea or stool color. </think>\n<answer>Question: How many bowel movements per day? How high was the fever? Do you feel nauseous? What color is the blood? Is the stool black?</answer>"
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "You are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\n",
+        "role": "system"
+      },
+      {
+        "content": "Patient's description: Diarrhea, loss of appetite, bloody stool (male, 37 years old)\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.\n",
+        "role": "user"
+      },
+      {
+        "content": "<think> The patient presents with diarrhea, loss of appetite, and bloody stool. To narrow down the diagnosis, I need to know the duration of symptoms and any associated factors. </think>\n<answer>Question: Hello, how long has this been going on?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "Hello, The bloody stool started today, but the diarrhea has been going on for three days. I had a fever and diarrhea on September 27th.",
+        "role": "user"
+      },
+      {
+        "content": "<think> The patient reports bloody stool today and diarrhea for three days, with a prior fever. I need to clarify the nature of the blood and potential causes, such as foodborne illness. </think>\n<answer>Question: Is it fresh blood? Did you eat anything unclean before this happened?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "It's not fresh blood, and I haven’t eaten anything unusual. I eat at the workplace cafeteria, and everyone else is fine.",
+        "role": "user"
+      },
+      {
+        "content": "<think> The blood is not fresh, and no unusual food intake. I need more details about bowel movement frequency, fever severity, and other symptoms like nausea or stool color. </think>\n<answer>Question: How many bowel movements per day? How high was the fever? Do you feel nauseous? What color is the blood? Is the stool black?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "From 4 PM today until now, I’ve been to the bathroom seven times. On the 27th, it was 7 to 9 times a day; on the 28th, 5 to 6 times; and today, it’s been about ten times.",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "ground_truth": {
+        "diagnosis": "Based on your symptoms, it appears you have enteritis, likely caused by an infection or irritation in your digestive tract.",
+        "recommendation": "I recommend continuing your current medications and adding Montmorillonite powder to help manage diarrhea. Avoid spicy foods and stick to a bland diet like porridge for the next few days. If symptoms worsen or the bloody stool persists, please seek immediate medical attention to rule out gastrointestinal bleeding or other complications."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, how long has this been going on?"
+          ],
+          "patient_response": [
+            "Hello,",
+            "The bloody stool started today, but the diarrhea has been going on for three days. I had a fever and diarrhea on September 27th."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Is it fresh blood? Did you eat anything unclean before this happened?"
+          ],
+          "patient_response": [
+            "It's not fresh blood, and I haven’t eaten anything unusual. I eat at the workplace cafeteria, and everyone else is fine."
+          ]
+        },
+        {
+          "doctor_question": [
+            "How many bowel movements per day? How high was the fever? Do you feel nauseous? What color is the blood? Is the stool black?"
+          ],
+          "patient_response": [
+            "From 4 PM today until now, I’ve been to the bathroom seven times.",
+            "On the 27th, it was 7 to 9 times a day; on the 28th, 5 to 6 times; and today, it’s been about ten times."
+          ]
+        },
+        {
+          "doctor_question": [
+            "If it’s not fresh blood, is it black stool?",
+            "How high was the fever, and are there any other symptoms?"
+          ],
+          "patient_response": [
+            "Not very black, slightly greenish. The highest fever was 38.4°C.",
+            "Also, I feel weak in the legs. The fever subsided by the 28th."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 2
+    },
+    "response": "<think> The patient has frequent bowel movements and a history of fever. I need to confirm stool color and fever details to assess for possible gastrointestinal bleeding or infection. </think>\n<answer>Question: If it’s not fresh blood, is it black stool? How high was the fever, and are there any other symptoms?</answer>"
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "You are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\n",
+        "role": "system"
+      },
+      {
+        "content": "Patient's description: Diarrhea, loss of appetite, bloody stool (male, 37 years old)\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.\n",
+        "role": "user"
+      },
+      {
+        "content": "<think> The patient presents with diarrhea, loss of appetite, and bloody stool. To narrow down the diagnosis, I need to know the duration of symptoms and any associated factors. </think>\n<answer>Question: Hello, how long has this been going on?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "Hello, The bloody stool started today, but the diarrhea has been going on for three days. I had a fever and diarrhea on September 27th.",
+        "role": "user"
+      },
+      {
+        "content": "<think> The patient reports bloody stool today and diarrhea for three days, with a prior fever. I need to clarify the nature of the blood and potential causes, such as foodborne illness. </think>\n<answer>Question: Is it fresh blood? Did you eat anything unclean before this happened?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "It's not fresh blood, and I haven’t eaten anything unusual. I eat at the workplace cafeteria, and everyone else is fine.",
+        "role": "user"
+      },
+      {
+        "content": "<think> The blood is not fresh, and no unusual food intake. I need more details about bowel movement frequency, fever severity, and other symptoms like nausea or stool color. </think>\n<answer>Question: How many bowel movements per day? How high was the fever? Do you feel nauseous? What color is the blood? Is the stool black?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "From 4 PM today until now, I’ve been to the bathroom seven times. On the 27th, it was 7 to 9 times a day; on the 28th, 5 to 6 times; and today, it’s been about ten times.",
+        "role": "user"
+      },
+      {
+        "content": "<think> The patient has frequent bowel movements and a history of fever. I need to confirm stool color and fever details to assess for possible gastrointestinal bleeding or infection. </think>\n<answer>Question: If it’s not fresh blood, is it black stool? How high was the fever, and are there any other symptoms?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "Not very black, slightly greenish. The highest fever was 38.4°C. Also, I feel weak in the legs. The fever subsided by the 28th.",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "ground_truth": {
+        "diagnosis": "Based on your symptoms, it appears you have enteritis, likely caused by an infection or irritation in your digestive tract.",
+        "recommendation": "I recommend continuing your current medications and adding Montmorillonite powder to help manage diarrhea. Avoid spicy foods and stick to a bland diet like porridge for the next few days. If symptoms worsen or the bloody stool persists, please seek immediate medical attention to rule out gastrointestinal bleeding or other complications."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, how long has this been going on?"
+          ],
+          "patient_response": [
+            "Hello,",
+            "The bloody stool started today, but the diarrhea has been going on for three days. I had a fever and diarrhea on September 27th."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Is it fresh blood? Did you eat anything unclean before this happened?"
+          ],
+          "patient_response": [
+            "It's not fresh blood, and I haven’t eaten anything unusual. I eat at the workplace cafeteria, and everyone else is fine."
+          ]
+        },
+        {
+          "doctor_question": [
+            "How many bowel movements per day? How high was the fever? Do you feel nauseous? What color is the blood? Is the stool black?"
+          ],
+          "patient_response": [
+            "From 4 PM today until now, I’ve been to the bathroom seven times.",
+            "On the 27th, it was 7 to 9 times a day; on the 28th, 5 to 6 times; and today, it’s been about ten times."
+          ]
+        },
+        {
+          "doctor_question": [
+            "If it’s not fresh blood, is it black stool?",
+            "How high was the fever, and are there any other symptoms?"
+          ],
+          "patient_response": [
+            "Not very black, slightly greenish. The highest fever was 38.4°C.",
+            "Also, I feel weak in the legs. The fever subsided by the 28th."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 2
+    },
+    "response": "<think> The patient has enteritis-like symptoms with diarrhea, mild fever, and weakness. The bloody stool is not fresh or black, suggesting lower GI irritation rather than upper GI bleeding. </think>\n<answer>Diagnosis: Based on your symptoms, it appears you have enteritis, likely caused by an infection or irritation in your digestive tract.\nRecommendation: I recommend continuing your current medications and adding Montmorillonite powder to help manage diarrhea. Avoid spicy foods and stick to a bland diet like porridge for the next few days. If symptoms worsen or the bloody stool persists, please seek immediate medical attention to rule out gastrointestinal bleeding or other complications.</answer>"
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "You are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\n",
+        "role": "system"
+      },
+      {
+        "content": "Patient's description: What is this area? The night before last, after eating too much for dinner, I went out for a bike ride and suddenly started feeling pain. It got worse and worse, so I eventually got an injection. It still hurts occasionally now, and it's tender to the touch. (Below and to the right of the belly button) (Male, 26 years old)\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.\n",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "ground_truth": {
+        "diagnosis": "The diagnosis is appendicitis.",
+        "recommendation": "For now, take the prescribed antibiotics and monitor your symptoms closely. If the pain worsens or you develop a fever, seek immediate medical attention to rule out complications like a ruptured appendix. Keep the area warm, stay hydrated, and avoid straining yourself. Follow up with a surgeon for further evaluation if symptoms persist."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello. Do you have a fever? Are your bowel movements normal?"
+          ],
+          "patient_response": [
+            "The arrow is pointing downward, roughly near the edge of my pants.",
+            "I’m okay, no fever."
+          ]
+        },
+        {
+          "doctor_question": [
+            "The location suggests it might be appendicitis. Is the pain constant?"
+          ],
+          "patient_response": [
+            "Right now, it hurts occasionally."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Have you had pain here before?"
+          ],
+          "patient_response": [
+            "I had pain once two months ago, but not in this spot. It was above the belly button.",
+            "The location isn’t very accurate; let me send another one."
+          ]
+        },
+        {
+          "doctor_question": [
+            "The main concern is ruling out appendicitis. Are your bowel movements normal?"
+          ],
+          "patient_response": [
+            "My bowel movements are fine.",
+            "It’s roughly in this area."
+          ]
+        },
+        {
+          "doctor_question": [
+            "That’s where the appendix is. Does it hurt when you press on it?"
+          ],
+          "patient_response": [
+            "Is it on the lower abdomen?",
+            "It hurts a little when pressed."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 0
+    },
+    "response": "<think>The patient describes pain below and to the right of the belly button, which worsened after physical activity. The location is concerning for appendicitis, but I need to rule out other possibilities like gastrointestinal upset or muscle strain. Fever and bowel habits are key indicators.</think>\n<answer>Question: Hello. Do you have a fever? Are your bowel movements normal?</answer>"
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "You are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\n",
+        "role": "system"
+      },
+      {
+        "content": "Patient's description: What is this area? The night before last, after eating too much for dinner, I went out for a bike ride and suddenly started feeling pain. It got worse and worse, so I eventually got an injection. It still hurts occasionally now, and it's tender to the touch. (Below and to the right of the belly button) (Male, 26 years old)\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.\n",
+        "role": "user"
+      },
+      {
+        "content": "<think>The patient describes pain below and to the right of the belly button, which worsened after physical activity. The location is concerning for appendicitis, but I need to rule out other possibilities like gastrointestinal upset or muscle strain. Fever and bowel habits are key indicators.</think>\n<answer>Question: Hello. Do you have a fever? Are your bowel movements normal?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "The arrow is pointing downward, roughly near the edge of my pants. I’m okay, no fever.",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "ground_truth": {
+        "diagnosis": "The diagnosis is appendicitis.",
+        "recommendation": "For now, take the prescribed antibiotics and monitor your symptoms closely. If the pain worsens or you develop a fever, seek immediate medical attention to rule out complications like a ruptured appendix. Keep the area warm, stay hydrated, and avoid straining yourself. Follow up with a surgeon for further evaluation if symptoms persist."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello. Do you have a fever? Are your bowel movements normal?"
+          ],
+          "patient_response": [
+            "The arrow is pointing downward, roughly near the edge of my pants.",
+            "I’m okay, no fever."
+          ]
+        },
+        {
+          "doctor_question": [
+            "The location suggests it might be appendicitis. Is the pain constant?"
+          ],
+          "patient_response": [
+            "Right now, it hurts occasionally."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Have you had pain here before?"
+          ],
+          "patient_response": [
+            "I had pain once two months ago, but not in this spot. It was above the belly button.",
+            "The location isn’t very accurate; let me send another one."
+          ]
+        },
+        {
+          "doctor_question": [
+            "The main concern is ruling out appendicitis. Are your bowel movements normal?"
+          ],
+          "patient_response": [
+            "My bowel movements are fine.",
+            "It’s roughly in this area."
+          ]
+        },
+        {
+          "doctor_question": [
+            "That’s where the appendix is. Does it hurt when you press on it?"
+          ],
+          "patient_response": [
+            "Is it on the lower abdomen?",
+            "It hurts a little when pressed."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 0
+    },
+    "response": "<think>The patient denies fever, which reduces the likelihood of infection but doesn't rule out appendicitis entirely. The pain's persistence and location are still concerning. I need to assess if the pain is constant or intermittent, as this can help differentiate appendicitis from other causes.</think>\n<answer>Question: The location suggests it might be appendicitis. Is the pain constant?</answer>"
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "You are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\n",
+        "role": "system"
+      },
+      {
+        "content": "Patient's description: What is this area? The night before last, after eating too much for dinner, I went out for a bike ride and suddenly started feeling pain. It got worse and worse, so I eventually got an injection. It still hurts occasionally now, and it's tender to the touch. (Below and to the right of the belly button) (Male, 26 years old)\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.\n",
+        "role": "user"
+      },
+      {
+        "content": "<think>The patient describes pain below and to the right of the belly button, which worsened after physical activity. The location is concerning for appendicitis, but I need to rule out other possibilities like gastrointestinal upset or muscle strain. Fever and bowel habits are key indicators.</think>\n<answer>Question: Hello. Do you have a fever? Are your bowel movements normal?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "The arrow is pointing downward, roughly near the edge of my pants. I’m okay, no fever.",
+        "role": "user"
+      },
+      {
+        "content": "<think>The patient denies fever, which reduces the likelihood of infection but doesn't rule out appendicitis entirely. The pain's persistence and location are still concerning. I need to assess if the pain is constant or intermittent, as this can help differentiate appendicitis from other causes.</think>\n<answer>Question: The location suggests it might be appendicitis. Is the pain constant?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "Right now, it hurts occasionally.",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "ground_truth": {
+        "diagnosis": "The diagnosis is appendicitis.",
+        "recommendation": "For now, take the prescribed antibiotics and monitor your symptoms closely. If the pain worsens or you develop a fever, seek immediate medical attention to rule out complications like a ruptured appendix. Keep the area warm, stay hydrated, and avoid straining yourself. Follow up with a surgeon for further evaluation if symptoms persist."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello. Do you have a fever? Are your bowel movements normal?"
+          ],
+          "patient_response": [
+            "The arrow is pointing downward, roughly near the edge of my pants.",
+            "I’m okay, no fever."
+          ]
+        },
+        {
+          "doctor_question": [
+            "The location suggests it might be appendicitis. Is the pain constant?"
+          ],
+          "patient_response": [
+            "Right now, it hurts occasionally."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Have you had pain here before?"
+          ],
+          "patient_response": [
+            "I had pain once two months ago, but not in this spot. It was above the belly button.",
+            "The location isn’t very accurate; let me send another one."
+          ]
+        },
+        {
+          "doctor_question": [
+            "The main concern is ruling out appendicitis. Are your bowel movements normal?"
+          ],
+          "patient_response": [
+            "My bowel movements are fine.",
+            "It’s roughly in this area."
+          ]
+        },
+        {
+          "doctor_question": [
+            "That’s where the appendix is. Does it hurt when you press on it?"
+          ],
+          "patient_response": [
+            "Is it on the lower abdomen?",
+            "It hurts a little when pressed."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 0
+    },
+    "response": "<think>Intermittent pain is less typical for classic appendicitis, which usually presents with constant, worsening pain. However, early appendicitis can sometimes present this way. I should ask about prior episodes of pain to assess for chronic or recurrent issues.</think>\n<answer>Question: Have you had pain here before?</answer>"
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "You are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\n",
+        "role": "system"
+      },
+      {
+        "content": "Patient's description: What is this area? The night before last, after eating too much for dinner, I went out for a bike ride and suddenly started feeling pain. It got worse and worse, so I eventually got an injection. It still hurts occasionally now, and it's tender to the touch. (Below and to the right of the belly button) (Male, 26 years old)\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.\n",
+        "role": "user"
+      },
+      {
+        "content": "<think>The patient describes pain below and to the right of the belly button, which worsened after physical activity. The location is concerning for appendicitis, but I need to rule out other possibilities like gastrointestinal upset or muscle strain. Fever and bowel habits are key indicators.</think>\n<answer>Question: Hello. Do you have a fever? Are your bowel movements normal?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "The arrow is pointing downward, roughly near the edge of my pants. I’m okay, no fever.",
+        "role": "user"
+      },
+      {
+        "content": "<think>The patient denies fever, which reduces the likelihood of infection but doesn't rule out appendicitis entirely. The pain's persistence and location are still concerning. I need to assess if the pain is constant or intermittent, as this can help differentiate appendicitis from other causes.</think>\n<answer>Question: The location suggests it might be appendicitis. Is the pain constant?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "Right now, it hurts occasionally.",
+        "role": "user"
+      },
+      {
+        "content": "<think>Intermittent pain is less typical for classic appendicitis, which usually presents with constant, worsening pain. However, early appendicitis can sometimes present this way. I should ask about prior episodes of pain to assess for chronic or recurrent issues.</think>\n<answer>Question: Have you had pain here before?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "I had pain once two months ago, but not in this spot. It was above the belly button. The location isn’t very accurate; let me send another one.",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "ground_truth": {
+        "diagnosis": "The diagnosis is appendicitis.",
+        "recommendation": "For now, take the prescribed antibiotics and monitor your symptoms closely. If the pain worsens or you develop a fever, seek immediate medical attention to rule out complications like a ruptured appendix. Keep the area warm, stay hydrated, and avoid straining yourself. Follow up with a surgeon for further evaluation if symptoms persist."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello. Do you have a fever? Are your bowel movements normal?"
+          ],
+          "patient_response": [
+            "The arrow is pointing downward, roughly near the edge of my pants.",
+            "I’m okay, no fever."
+          ]
+        },
+        {
+          "doctor_question": [
+            "The location suggests it might be appendicitis. Is the pain constant?"
+          ],
+          "patient_response": [
+            "Right now, it hurts occasionally."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Have you had pain here before?"
+          ],
+          "patient_response": [
+            "I had pain once two months ago, but not in this spot. It was above the belly button.",
+            "The location isn’t very accurate; let me send another one."
+          ]
+        },
+        {
+          "doctor_question": [
+            "The main concern is ruling out appendicitis. Are your bowel movements normal?"
+          ],
+          "patient_response": [
+            "My bowel movements are fine.",
+            "It’s roughly in this area."
+          ]
+        },
+        {
+          "doctor_question": [
+            "That’s where the appendix is. Does it hurt when you press on it?"
+          ],
+          "patient_response": [
+            "Is it on the lower abdomen?",
+            "It hurts a little when pressed."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 0
+    },
+    "response": "<think>The patient's description of prior pain above the belly button suggests possible gastritis or indigestion, which is different from the current complaint. The current pain's location (right lower quadrant) is still concerning for appendicitis. I need to confirm bowel habits, as changes can indicate appendicitis or other gastrointestinal issues.</think>\n<answer>Question: The main concern is ruling out appendicitis. Are your bowel movements normal?</answer>"
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "You are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\n",
+        "role": "system"
+      },
+      {
+        "content": "Patient's description: What is this area? The night before last, after eating too much for dinner, I went out for a bike ride and suddenly started feeling pain. It got worse and worse, so I eventually got an injection. It still hurts occasionally now, and it's tender to the touch. (Below and to the right of the belly button) (Male, 26 years old)\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.\n",
+        "role": "user"
+      },
+      {
+        "content": "<think>The patient describes pain below and to the right of the belly button, which worsened after physical activity. The location is concerning for appendicitis, but I need to rule out other possibilities like gastrointestinal upset or muscle strain. Fever and bowel habits are key indicators.</think>\n<answer>Question: Hello. Do you have a fever? Are your bowel movements normal?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "The arrow is pointing downward, roughly near the edge of my pants. I’m okay, no fever.",
+        "role": "user"
+      },
+      {
+        "content": "<think>The patient denies fever, which reduces the likelihood of infection but doesn't rule out appendicitis entirely. The pain's persistence and location are still concerning. I need to assess if the pain is constant or intermittent, as this can help differentiate appendicitis from other causes.</think>\n<answer>Question: The location suggests it might be appendicitis. Is the pain constant?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "Right now, it hurts occasionally.",
+        "role": "user"
+      },
+      {
+        "content": "<think>Intermittent pain is less typical for classic appendicitis, which usually presents with constant, worsening pain. However, early appendicitis can sometimes present this way. I should ask about prior episodes of pain to assess for chronic or recurrent issues.</think>\n<answer>Question: Have you had pain here before?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "I had pain once two months ago, but not in this spot. It was above the belly button. The location isn’t very accurate; let me send another one.",
+        "role": "user"
+      },
+      {
+        "content": "<think>The patient's description of prior pain above the belly button suggests possible gastritis or indigestion, which is different from the current complaint. The current pain's location (right lower quadrant) is still concerning for appendicitis. I need to confirm bowel habits, as changes can indicate appendicitis or other gastrointestinal issues.</think>\n<answer>Question: The main concern is ruling out appendicitis. Are your bowel movements normal?</answer>",
+        "role": "assistant"
+      },
+      {
+        "content": "My bowel movements are fine. It’s roughly in this area.",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "ground_truth": {
+        "diagnosis": "The diagnosis is appendicitis.",
+        "recommendation": "For now, take the prescribed antibiotics and monitor your symptoms closely. If the pain worsens or you develop a fever, seek immediate medical attention to rule out complications like a ruptured appendix. Keep the area warm, stay hydrated, and avoid straining yourself. Follow up with a surgeon for further evaluation if symptoms persist."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello. Do you have a fever? Are your bowel movements normal?"
+          ],
+          "patient_response": [
+            "The arrow is pointing downward, roughly near the edge of my pants.",
+            "I’m okay, no fever."
+          ]
+        },
+        {
+          "doctor_question": [
+            "The location suggests it might be appendicitis. Is the pain constant?"
+          ],
+          "patient_response": [
+            "Right now, it hurts occasionally."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Have you had pain here before?"
+          ],
+          "patient_response": [
+            "I had pain once two months ago, but not in this spot. It was above the belly button.",
+            "The location isn’t very accurate; let me send another one."
+          ]
+        },
+        {
+          "doctor_question": [
+            "The main concern is ruling out appendicitis. Are your bowel movements normal?"
+          ],
+          "patient_response": [
+            "My bowel movements are fine.",
+            "It’s roughly in this area."
+          ]
+        },
+        {
+          "doctor_question": [
+            "That’s where the appendix is. Does it hurt when you press on it?"
+          ],
+          "patient_response": [
+            "Is it on the lower abdomen?",
+            "It hurts a little when pressed."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 0
+    },
+    "response": "<think>Normal bowel movements reduce the likelihood of gastrointestinal obstruction or severe inflammation, but appendicitis is still possible. The patient's description of tenderness on palpation is a key symptom of appendicitis. I should confirm this finding.</think>\n<answer>Question: That’s where the appendix is. Does it hurt when you press on it?</answer>"
+  }
+]

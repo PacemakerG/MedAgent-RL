@@ -1,0 +1,553 @@
+[
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "<|im_start|>user\nYou are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\nRewards:\nIncorrect format: -2.0\nEffective question (patient can provide an answer and the question is helpful for diagnosis): +1.0\nIneffective questions do not count towards score\nRepeated questions: -2.0\nThe number of conversation turn is limited. Reaching maximum interaction rounds without providing a diagnosis: -5.0\nCompletely correct diagnosis and recommendations: +10.0\n\nPatient's description: After vomiting and diarrhea from acute gastroenteritis, do I still need an IV drip?\n\n\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.<|im_end|>\n<|im_start|>assistant\n<think>",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "enhanced_description": "After experiencing acute gastroenteritis, the patient reported vomiting twice and having diarrhea twice today. They also mentioned feeling somewhat exhausted and noted that their body felt hot, though their forehead did not feel particularly warm. The patient had previously experienced similar symptoms. They were concerned about the possibility of a nighttime reaction and sought advice on whether they still needed an IV drip. Based on the symptoms described, the patient is likely suffering from gastritis and enteritis. Given the severity and persistence of the symptoms, it is recommended that the patient go to the hospital for blood tests and electrolyte checks. In the meantime, the patient can take levofloxacin, Smecta, bifidobacterium viable capsules, and omeprazole as prescribed. It is important for the patient to stay hydrated and rest well.",
+      "ground_truth": {
+        "diagnosis": "Based on your symptoms, you are likely suffering from gastritis and enteritis.",
+        "recommendation": "I recommend you go to the hospital for blood tests and electrolyte checks if your symptoms persist. In the meantime, you can take levofloxacin, Smecta, bifidobacterium viable capsules, and omeprazole as prescribed. Make sure to stay hydrated and rest well."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, how old are you?"
+          ],
+          "patient_response": [
+            "Will there be a reaction again at night?",
+            "23"
+          ]
+        },
+        {
+          "doctor_question": [
+            "Is your vomiting and diarrhea severe?"
+          ],
+          "patient_response": [
+            "I've had it before.",
+            "Vomited twice."
+          ]
+        },
+        {
+          "doctor_question": [
+            "How many times have you vomited and had diarrhea today?"
+          ],
+          "patient_response": [
+            "Had diarrhea twice."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Do you also have a fever?"
+          ],
+          "patient_response": [
+            "Now I feel a bit exhausted.",
+            "My forehead isn't hot.",
+            "My body feels somewhat hot.",
+            "I was just shivering earlier."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 0
+    }
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "<|im_start|>user\nYou are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\nRewards:\nIncorrect format: -2.0\nEffective question (patient can provide an answer and the question is helpful for diagnosis): +1.0\nIneffective questions do not count towards score\nRepeated questions: -2.0\nThe number of conversation turn is limited. Reaching maximum interaction rounds without providing a diagnosis: -5.0\nCompletely correct diagnosis and recommendations: +10.0\n\nPatient's description: Stomach discomfort, constant nausea, feeling weak, and chills. This happened after soaking in an outdoor hot spring today. (Female, 22 years old)\n\n\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.<|im_end|>\n<|im_start|>assistant\n<think>",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "enhanced_description": "The patient, a 22-year-old female, reports experiencing stomach discomfort, constant nausea, and feeling weak after soaking in an outdoor hot spring today. She also mentions having diarrhea and a slight fever, with her forehead feeling hot. The patient notes that she has not vomited but has experienced severe watery diarrhea multiple times throughout the day. She is currently resting and drinking warm water, but is unsure about her temperature as they do not have a thermometer at home. She is considering drinking ginger tea to help alleviate her symptoms. Given these symptoms, she likely has a cold, possibly exacerbated by exposure to cold after soaking in the hot spring. The combination of nausea, diarrhea, and fever supports this diagnosis. Recommendations include resting, staying hydrated, monitoring her temperature, and considering antipyretics if her fever persists or worsens. Ginger tea may also provide some relief.",
+      "ground_truth": {
+        "diagnosis": "She likely has a cold, possibly due to exposure to cold after soaking in the hot spring, leading to symptoms like nausea, weakness, and chills.",
+        "recommendation": "I recommend she rests well, drinks plenty of warm water, and monitors her temperature. If her fever persists or worsens, consider taking antipyretics or seeking further medical attention. Ginger tea may also help alleviate the cold symptoms."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, I’m happy to assist you.",
+            "Do you have a fever? Could it be due to catching a cold?"
+          ],
+          "patient_response": [
+            "Hello.",
+            "I’m not entirely sure about the specifics. My girlfriend is feeling very unwell, and the symptoms I described earlier were relayed by her."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Or she can drink some ginger tea. Ask her if she has diarrhea or acid reflux/heartburn.",
+            "Has she eaten any spicy or irritating foods, or perhaps something cold that upset her stomach? If not, it’s likely due to catching a cold."
+          ],
+          "patient_response": [
+            "She has diarrhea.",
+            "She’s been feeling nauseous but hasn’t vomited.",
+            "Her forehead feels a bit hot.",
+            "We don’t have a thermometer at home."
+          ]
+        },
+        {
+          "doctor_question": [
+            "How many times has she had diarrhea today?"
+          ],
+          "patient_response": [
+            "What do you think we should do?"
+          ]
+        },
+        {
+          "doctor_question": [
+            "Is it watery stool?"
+          ],
+          "patient_response": [
+            "She said it’s quite severe."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Oh. Hello, are you still there?"
+          ],
+          "patient_response": [
+            "Hello, sorry. I was busy taking care of her.",
+            "Thank you."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 1
+    }
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "<|im_start|>user\nYou are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\nRewards:\nIncorrect format: -2.0\nEffective question (patient can provide an answer and the question is helpful for diagnosis): +1.0\nIneffective questions do not count towards score\nRepeated questions: -2.0\nThe number of conversation turn is limited. Reaching maximum interaction rounds without providing a diagnosis: -5.0\nCompletely correct diagnosis and recommendations: +10.0\n\nPatient's description: Acute gastroenteritis, diarrhea, stomach and abdominal pain. (Female, 31 years old)\n\n\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.<|im_end|>\n<|im_start|>assistant\n<think>",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "enhanced_description": "A 31-year-old female reports experiencing acute gastroenteritis, which began shortly after consuming beef hotpot last night. She has had diarrhea six to seven times since then, initially loose but now watery. The diarrhea is severe, occurring approximately once an hour. She is unable to keep food down, feeling uncomfortable even after consuming a small amount, and experiences occasional nausea, though she is holding back vomit. Her symptoms include significant stomach and abdominal pain. Based on her symptoms, she has been diagnosed with gastritis and enteritis. The recommended treatment includes taking prescribed medications as directed, maintaining hydration with oral rehydration salts, and following a light diet. If her symptoms worsen or she cannot keep fluids down, she should seek immediate medical attention for potential IV rehydration.",
+      "ground_truth": {
+        "diagnosis": "Based on your symptoms, you have gastritis and enteritis.",
+        "recommendation": "Take the prescribed medications as directed, maintain hydration with oral rehydration salts, and follow a light diet. If symptoms worsen or you cannot keep fluids down, seek immediate medical attention for IV rehydration."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, how long has this been going on? Is the diarrhea severe? How many times a day?"
+          ],
+          "patient_response": [
+            "I had beef hotpot last night, and it started soon after."
+          ]
+        },
+        {
+          "doctor_question": [
+            "How many times have you had diarrhea? What does it look like?"
+          ],
+          "patient_response": [
+            "From last night until now, I've had diarrhea 6 or 7 times."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Is it watery diarrhea?"
+          ],
+          "patient_response": [
+            "At first it was loose, but now it's watery.",
+            "Yes."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Are you vomiting?"
+          ],
+          "patient_response": [
+            "Now it's basically once an hour."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Can you keep food down?"
+          ],
+          "patient_response": [
+            "I feel like vomiting but I'm holding it back.",
+            "I can't eat.",
+            "I feel uncomfortable after eating just a little."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 2
+    }
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "<|im_start|>user\nYou are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\nRewards:\nIncorrect format: -2.0\nEffective question (patient can provide an answer and the question is helpful for diagnosis): +1.0\nIneffective questions do not count towards score\nRepeated questions: -2.0\nThe number of conversation turn is limited. Reaching maximum interaction rounds without providing a diagnosis: -5.0\nCompletely correct diagnosis and recommendations: +10.0\n\nPatient's description: I've been experiencing poor digestion for the past two weeks and have been eating very little (female, 24 years old).\n\n\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.<|im_end|>\n<|im_start|>assistant\n<think>",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "enhanced_description": "A 24-year-old female has been experiencing poor digestion for the past two weeks, accompanied by bloating, nausea, and belching. She reports that she eats quickly and does not exercise frequently. The patient denies having a gastroscopy before and notes that her bowel movements are normal.",
+      "ground_truth": {
+        "diagnosis": "Based on your symptoms and history, the diagnosis is gastritis.",
+        "recommendation": "I advise you to take mosapride and compound digestive enzymes as prescribed, follow a bland diet, and schedule a follow-up if symptoms persist or worsen."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, I'm happy to assist you.",
+            "Do you have stomach pain, bloating, acid reflux, nausea, or belching?"
+          ],
+          "patient_response": [
+            "I have bloating, nausea, and belching."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Do you usually eat quickly, and do you exercise often?"
+          ],
+          "patient_response": [
+            "I eat quickly and don't exercise much."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Have you had a gastroscopy before?"
+          ],
+          "patient_response": [
+            "No."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Are your bowel movements normal?"
+          ],
+          "patient_response": [
+            "Yes, they're normal."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 3
+    }
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "<|im_start|>user\nYou are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\nRewards:\nIncorrect format: -2.0\nEffective question (patient can provide an answer and the question is helpful for diagnosis): +1.0\nIneffective questions do not count towards score\nRepeated questions: -2.0\nThe number of conversation turn is limited. Reaching maximum interaction rounds without providing a diagnosis: -5.0\nCompletely correct diagnosis and recommendations: +10.0\n\nPatient's description: Hello doctor, I've been experiencing a vague pain in my lower left abdomen when I eat a bit more these past two days. It's not very noticeable, more like a stitch, and it goes away quickly. What could this be? No other symptoms. Thank you. (Female, 34 years old)\n\n\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.<|im_end|>\n<|im_start|>assistant\n<think>",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "enhanced_description": "A 34-year-old female patient reports experiencing a vague, stitch-like pain in her lower left abdomen that occurs intermittently when she eats more than usual. This pain is not very noticeable and resolves quickly. She denies any nausea, vomiting, or diarrhea. The patient is six months pregnant and has been attending regular prenatal checkups, with her most recent visit being 10 days ago. She also denies any vaginal bleeding. The symptoms do not strongly suggest pancreatitis, as the pain is mild and intermittent. However, if the discomfort persists or worsens, further evaluation would be necessary to rule it out. For now, the recommendation is to maintain a balanced diet, engage in light exercise, and avoid overeating. The patient should monitor the pain closely and seek medical attention promptly if it becomes more frequent or intense, or if other symptoms such as nausea or fever appear.",
+      "ground_truth": {
+        "diagnosis": "The symptoms described do not strongly suggest pancreatitis, as the pain is mild and intermittent. However, if the discomfort persists or worsens, further evaluation would be necessary to rule it out.",
+        "recommendation": "For now, focus on maintaining a balanced diet, light exercise, and avoiding overeating. Monitor the pain closely. If it becomes more frequent or intense, or if other symptoms like nausea or fever appear, please seek medical attention promptly to ensure both your and your baby’s well-being."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, have you experienced any nausea, vomiting, or diarrhea?"
+          ],
+          "patient_response": [
+            "No.",
+            "Just a vague pain occasionally.",
+            "Could it be pancreatitis?"
+          ]
+        },
+        {
+          "doctor_question": [
+            "Is it pain or more like bloating?"
+          ],
+          "patient_response": [
+            "It feels like a stitch-like pain.",
+            "I'm six months pregnant."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Have you had any vaginal bleeding?"
+          ],
+          "patient_response": [
+            "No."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Have you started your prenatal checkups?"
+          ],
+          "patient_response": [
+            "I’ve been going for regular checkups all along.",
+            "I just went 10 days ago."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 4
+    }
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "<|im_start|>user\nYou are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\nRewards:\nIncorrect format: -2.0\nEffective question (patient can provide an answer and the question is helpful for diagnosis): +1.0\nIneffective questions do not count towards score\nRepeated questions: -2.0\nThe number of conversation turn is limited. Reaching maximum interaction rounds without providing a diagnosis: -5.0\nCompletely correct diagnosis and recommendations: +10.0\n\nPatient's description: Having the urge to defecate but unable to pass stool, passing gas with difficulty, stool is hard at first and soft later (Male, 32 years old)\n\n\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.<|im_end|>\n<|im_start|>assistant\n<think>",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "enhanced_description": "The patient, a 32-year-old male, reports having the urge to defecate but being unable to pass stool, with occasional difficulty passing gas. He experiences hard stools initially followed by softer ones. He has bowel movements 1-2 times per day, with the urge to defecate mainly occurring at night. Sometimes, the symptoms are severe, while other times they are mild. He mentions having had an anal fistula surgery before and currently suffers from hemorrhoids. He notes that his symptoms are more pronounced when he eats less, and he feels the urge but cannot pass stool. He denies experiencing weight loss and states that he has a good appetite and relatively frequent bowel movements. He does not recall having a colonoscopy. Based on his symptoms, the diagnosis is constipation, which is often associated with poor intestinal function and may be exacerbated by dietary habits. The recommended treatment includes increasing fiber intake, staying hydrated, avoiding cold and spicy foods, and considering a colonoscopy to rule out any underlying conditions such as polyps. Regular exercise is also advised to improve bowel movements.",
+      "ground_truth": {
+        "diagnosis": "The diagnosis is constipation.",
+        "recommendation": "I recommend adjusting your diet to include more fiber-rich foods, staying hydrated, and avoiding cold and spicy foods. A colonoscopy would also be advisable to rule out any underlying conditions like polyps. Regular exercise can also help improve bowel movements."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, how long has this been going on? How many bowel movements do you have per day?"
+          ],
+          "patient_response": [
+            "1-2 times.",
+            "I have bowel movements once or twice a day. I've had an anal fistula surgery before and have hemorrhoids.",
+            "Sometimes it's severe and sometimes mild. Mainly at night, I feel the urge but can't pass stool. Usually, I have one bowel movement the next morning after breakfast."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Having bowel movements 2-3 times a day or once every 2-3 days is considered normal. Have you ever had a colonoscopy?",
+            "Based on what you've described, I suspect it's due to poor intestinal function and indigestion."
+          ],
+          "patient_response": [
+            "No, I haven't.",
+            "Well, I don't think I have digestion issues. I have a big appetite and relatively frequent bowel movements."
+          ]
+        },
+        {
+          "doctor_question": [
+            "This is related to dietary habits and the types of food you eat. Have you experienced any weight loss?"
+          ],
+          "patient_response": [
+            "No.",
+            "I usually eat a lot. When I eat less sometimes, I feel the urge but can't pass stool."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 5
+    }
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "<|im_start|>user\nYou are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\nRewards:\nIncorrect format: -2.0\nEffective question (patient can provide an answer and the question is helpful for diagnosis): +1.0\nIneffective questions do not count towards score\nRepeated questions: -2.0\nThe number of conversation turn is limited. Reaching maximum interaction rounds without providing a diagnosis: -5.0\nCompletely correct diagnosis and recommendations: +10.0\n\nPatient's description: Hello doctor, I have difficulty with bowel movements and bloating. What should I do? (Male, 16 years old)\n\n\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.<|im_end|>\n<|im_start|>assistant\n<think>",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "enhanced_description": "Hello doctor, I have been experiencing difficulty with bowel movements for the past 9 days, having them 2-3 times a day. I do not engage in any physical activity, not even a little. This situation is quite serious; I can walk a few steps, but even the most authoritative doctors in China cannot perform the surgery. It seems that my condition might be related to poor intestinal motility due to lack of physical activity. I am seeking your advice on how to improve my situation.",
+      "ground_truth": {
+        "diagnosis": "You are experiencing constipation, likely due to poor intestinal motility from lack of physical activity.",
+        "recommendation": "I recommend increasing your intake of vegetables, engaging in light exercise like walking if possible, and massaging your abdomen daily to help with bowel movements. If symptoms persist, consider consulting a specialist for further evaluation."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "How long has this been going on? How often do you have bowel movements?"
+          ],
+          "patient_response": [
+            "It’s been 9 days, with bowel movements 2-3 times a day."
+          ]
+        },
+        {
+          "doctor_question": [
+            "How much exercise do you usually get?"
+          ],
+          "patient_response": [
+            "I don’t exercise at all, not even a little."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Is it very serious? Taking a walk should be fine, right?"
+          ],
+          "patient_response": [
+            "It’s quite serious. I can walk a few steps, but even the most authoritative doctors in China can’t perform the surgery. Do you know Wu Qingyu?"
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 6
+    }
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "<|im_start|>user\nYou are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\nRewards:\nIncorrect format: -2.0\nEffective question (patient can provide an answer and the question is helpful for diagnosis): +1.0\nIneffective questions do not count towards score\nRepeated questions: -2.0\nThe number of conversation turn is limited. Reaching maximum interaction rounds without providing a diagnosis: -5.0\nCompletely correct diagnosis and recommendations: +10.0\n\nPatient's description: I often have stomach pain. It occurs after the first bite of food every day but goes away quickly. Occasionally, the stomach pain is accompanied by vomiting, and whenever I vomit, I also have diarrhea. Stomach pain often leads to diarrhea. I don’t have bowel movements every day, usually once every two days. (Female, 16 years old)\n\n\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.<|im_end|>\n<|im_start|>assistant\n<think>",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "enhanced_description": "A 16-year-old female reports experiencing stomach pain daily, which typically occurs immediately after the first bite of food and resolves quickly. The pain occasionally is accompanied by vomiting, and when she vomits, she also experiences diarrhea. The stomach pain often leads to diarrhea as well. She does not have bowel movements every day, usually having one every two days. The patient mentions that the pain improves slightly after bowel movements. She believes she has a history of gastroenteritis and has experienced these symptoms for several years. She has not undergone any tests or taken oral medications. Her diet is normal, consisting of three meals per day. She does not usually experience heartburn or acid reflux. Based on her symptoms, she is likely suffering from gastritis and enteritis. The doctor recommends maintaining a light diet and monitoring her symptoms. If the issues persist, a colonoscopy is advised for further evaluation. She may also try taking Trimebutine and Bifidobacterium, but if there is no improvement, a hospital visit is necessary.",
+      "ground_truth": {
+        "diagnosis": "Based on your symptoms, you likely have gastritis and enteritis.",
+        "recommendation": "I recommend maintaining a light diet and monitoring your symptoms. If the issues persist, please schedule a colonoscopy for further evaluation. You may also try taking Trimebutine and Bifidobacterium, but if there’s no improvement, a hospital visit is advisable."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, I’m happy to assist you.",
+            "Hello, how long has this been going on?",
+            "Does the stomach pain improve after bowel movements? Do you have any underlying medical conditions?"
+          ],
+          "patient_response": [
+            "It does improve a bit.",
+            "I think I usually have gastroenteritis.",
+            "This has been happening for a long time, several years."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Have you had any tests or taken any oral medications? How is your diet?"
+          ],
+          "patient_response": [
+            "I haven’t had any tests or taken oral medications.",
+            "My diet is normal, three meals a day."
+          ]
+        },
+        {
+          "doctor_question": [
+            "First, keep your diet light. If this keeps happening, I recommend getting a colonoscopy at the hospital to confirm the diagnosis.",
+            "Do you usually experience heartburn or acid reflux?"
+          ],
+          "patient_response": [
+            "I don’t usually have heartburn or acid reflux."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Have you taken Bifidobacterium? You can try taking Trimebutine and Bifidobacterium first to see if it helps. If not, it’s best to get checked at the hospital."
+          ],
+          "patient_response": [
+            "Okay."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 7
+    }
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "<|im_start|>user\nYou are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\nRewards:\nIncorrect format: -2.0\nEffective question (patient can provide an answer and the question is helpful for diagnosis): +1.0\nIneffective questions do not count towards score\nRepeated questions: -2.0\nThe number of conversation turn is limited. Reaching maximum interaction rounds without providing a diagnosis: -5.0\nCompletely correct diagnosis and recommendations: +10.0\n\nPatient's description: Diarrhea, cold sweats, and weakness in limbs (Male, 47 years old)\n\n\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.<|im_end|>\n<|im_start|>assistant\n<think>",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "enhanced_description": "The patient, a 47-year-old male, reported experiencing diarrhea that occurred once, followed by an episode of cold sweats and weakness in his limbs. He mentioned almost fainting earlier but feels better now. The patient has not yet taken any medications and is seeking advice on whether he can do so. He noted that he could not see previous messages in the interface, which led to confusion about his communication history. Based on the symptoms described, the patient is likely suffering from gastritis and enteritis. These conditions can cause abdominal pain, diarrhea, and systemic symptoms such as cold sweats and weakness. The patient is advised to rest adequately, stay hydrated, and take the prescribed medications as needed. If symptoms persist or worsen, he should consider visiting a healthcare provider for further evaluation.",
+      "ground_truth": {
+        "diagnosis": "Based on your symptoms, you are likely suffering from gastritis and enteritis.",
+        "recommendation": "If symptoms persist or worsen, consider visiting a healthcare provider for further evaluation. For now, rest adequately, stay hydrated, and take the prescribed medications as needed."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, how many times have you had diarrhea? When did the symptoms start?"
+          ],
+          "patient_response": [
+            "Hello, it just happened once.",
+            "I almost fainted earlier, then had one episode of diarrhea. I feel better now."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Yes, I’m here. Haven’t I already replied to you?"
+          ],
+          "patient_response": [
+            "So, can I take these two medications now?",
+            "I just had diarrhea earlier."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Didn’t you just have diarrhea? Take them."
+          ],
+          "patient_response": [
+            "I couldn’t see the earlier messages.",
+            "I see now. Earlier, I didn’t send a message—the interface was still showing your old unreplied message. It’s fine now."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 8
+    }
+  },
+  {
+    "data_source": "medical_consultation",
+    "prompt": [
+      {
+        "content": "<|im_start|>user\nYou are an experienced doctor who needs to provide professional diagnosis and advice to patients through consultation. Please listen carefully to the patient's description, ask targeted questions, and collect sufficient information before giving a diagnosis and treatment recommendation.\n\nQuick Guide\nObjectives:\n1. Obtain key information through effective questioning, each round of questions should be modified based on the previous round's content, meaning you shouldn't ask similar questions.\n2. Comprehensively analyze the patient's condition to provide an accurate diagnosis and appropriate treatment recommendations.\n\nRules:\n1. You can only choose one of the options to respond, you cannot both answer questions and provide a diagnosis simultaneously.\n2. Absolutely do not repeat or ask questions similar or identical to those previously asked.\n\nResponse:\n<think> [your thinking] </think>\n<answer>If you believe there is insufficient information, please only ask one question, in this format:\nQuestion: (your question).\n</answer> | <answer>If you believe you have obtained enough information, please only provide diagnosis and recommendations, in this format:\nDiagnosis: (the patient's most likely disease or symptoms)\nRecommendation: (corresponding treatment plan or advice)\n</answer>\nRewards:\nIncorrect format: -2.0\nEffective question (patient can provide an answer and the question is helpful for diagnosis): +1.0\nIneffective questions do not count towards score\nRepeated questions: -2.0\nThe number of conversation turn is limited. Reaching maximum interaction rounds without providing a diagnosis: -5.0\nCompletely correct diagnosis and recommendations: +10.0\n\nPatient's description: Pain in the lower right abdomen below the navel? (Female, 32 years old)\n\n\nDecide next action:\nAlways output: <think> [your thinking] </think> <answer> [your response] </answer> No additional text. Strictly follow this format.<|im_end|>\n<|im_start|>assistant\n<think>",
+        "role": "user"
+      }
+    ],
+    "reward_model": {
+      "enhanced_description": "A 32-year-old female reports experiencing pain in the lower right abdomen below the navel, which has been ongoing for about three to four days. She mentions a slight burning sensation during urination and has one bowel movement per day. The patient notes that she did not experience these symptoms in March, as her last check-up was routine. Based on her symptoms and history, she may be experiencing gastritis and enteritis. The doctor recommends scheduling an appointment with a gynecologist or urologist for further evaluation. In the meantime, she should avoid spicy and irritating foods, stay hydrated, and monitor her symptoms. If the pain worsens or persists, she should seek medical attention promptly.",
+      "ground_truth": {
+        "diagnosis": "Based on your symptoms and history, you may be experiencing gastritis and enteritis.",
+        "recommendation": "I recommend scheduling an appointment with a gynecologist or urologist for further evaluation. In the meantime, avoid spicy and irritating foods, stay hydrated, and monitor your symptoms. If the pain worsens or persists, seek medical attention promptly."
+      },
+      "patient_information": [
+        {
+          "doctor_question": [
+            "Hello, how long has this been going on?"
+          ],
+          "patient_response": [
+            "About three or four days,",
+            "Can you tell me where this is?"
+          ]
+        },
+        {
+          "doctor_question": [
+            "Are your bowel movements and urination normal? Does the pain ease after defecation?"
+          ],
+          "patient_response": [
+            "There's a slight burning sensation when urinating.",
+            "I have one bowel movement a day."
+          ]
+        },
+        {
+          "doctor_question": [
+            "Were you experiencing this in March? Also, what kind of ultrasound did you have?",
+            "Based on the symptoms alone, it’s impossible to make a clear diagnosis; further tests are needed."
+          ],
+          "patient_response": [
+            "I didn’t have this issue back then; it was just a routine check-up."
+          ]
+        }
+      ]
+    },
+    "extra_info": {
+      "index": 9
+    }
+  }
+]
