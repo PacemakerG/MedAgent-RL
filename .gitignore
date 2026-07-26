@@ -1,0 +1,14 @@
+# Third-party raw datasets are downloaded locally and are not committed.
+data/raw_sources/*
+!data/raw_sources/README.md
+
+# Generated local dataset artifacts.
+data/processed_samples/*.parquet
+data/processed_samples/*.jsonl
+
+# Python caches.
+__pycache__/
+*.py[cod]
+
+# macOS.
+.DS_Store
