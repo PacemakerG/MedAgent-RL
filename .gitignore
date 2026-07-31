@@ -5,6 +5,7 @@ data/raw_sources/*
 # Generated local dataset artifacts.
 data/processed_samples/*.parquet
 data/processed_samples/*.jsonl
+data/processed_samples/*.json
 
 # Python caches.
 __pycache__/
