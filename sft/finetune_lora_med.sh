@@ -1,22 +1,30 @@
-# NOTE only tested with 1 GPU
+#!/usr/bin/env bash
 
+set -euo pipefail
 set -x
+
+if [ "$#" -lt 2 ]; then
+    echo "Usage: bash $0 <num_gpus> <save_path> [hydra overrides...]"
+    exit 1
+fi
+
+# Reduce allocator fragmentation for long-context training.
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 
 nproc_per_node=$1
 save_path=$2
 
-if [ ! -d $save_path ]; then
-    mkdir -p $save_path
-fi
+mkdir -p "$save_path"
 
 shift 2
+# With 8 GPUs, micro_batch_size=8 is normalized to micro-batch 1 per GPU.
 torchrun --standalone --nnodes=1 --nproc_per_node=$nproc_per_node \
      -m ragen.trainer.fsdp_sft_trainer \
     data.train_files=data/MTMedDialog_sft_train.parquet \
     data.val_files=data/MTMedDialog_sft_val.parquet \
     data.prompt_key=prompt \
     data.response_key=response \
-    data.max_length=6784 \
+    data.max_length=4096 \
     optim.lr=1e-4 \
     data.train_batch_size=128 \
     data.micro_batch_size=8 \
@@ -29,13 +37,10 @@ torchrun --standalone --nnodes=1 --nproc_per_node=$nproc_per_node \
     trainer.total_epochs=3 \
     trainer.default_hdfs_dir=null $@ \
     trainer.validate_before_training=True \
-    model.lora_rank=64 \
-    model.lora_alpha=32 \
+    model.lora_rank=32 \
+    model.lora_alpha=16 \
     model.target_modules=all-linear \
     model.enable_gradient_checkpointing=True \
-    2>&1 | tee  $save_path/train.log
+    2>&1 | tee "$save_path/train.log"
 
-python sft/utils/merge_lora.py \
-    --base_model_name Qwen2.5-7B-Instruct \
-    --lora_model_path $save_path \
-    --output_path DoctorLLM-7B-SFT-1000-thinking
+echo "SFT finished. Select a checkpoint under $save_path/global_step_* before merging LoRA weights."
