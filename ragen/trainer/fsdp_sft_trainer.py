@@ -177,7 +177,7 @@ class FSDPSFTTrainer(object):
         with init_context():
             self.model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(local_model_path,
                                                                                config=config,
-                                                                               torch_dtype=torch.float32,
+                                                                               dtype=torch.bfloat16,
                                                                                attn_implementation='flash_attention_2',
                                                                                trust_remote_code=trust_remote_code)
             if self.config.model.get('lora_rank', 0) > 0:
@@ -191,6 +191,10 @@ class FSDPSFTTrainer(object):
                     'bias': "none"
                 }
                 self.model = get_peft_model(self.model, LoraConfig(**lora_config))
+
+        if self.device_mesh.get_rank() == 0:
+            print(f'Attention implementation: {self.model.config._attn_implementation}')
+            print(f'Model load dtype: {next(self.model.parameters()).dtype}')
 
         if self.config.model.enable_gradient_checkpointing:
             self.model.gradient_checkpointing_enable(gradient_checkpointing_kwargs={'use_reentrant': False})
