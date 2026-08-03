@@ -17,7 +17,9 @@ save_path=$2
 mkdir -p "$save_path"
 
 shift 2
-# With 8 GPUs, micro_batch_size=8 is normalized to micro-batch 1 per GPU.
+# 已在单节点 8 张 24 GB NVIDIA RTX 4090 D 上完成实测。
+# micro_batch_size=8 归一化后为每张 GPU 处理 1 个样本，实测显存约为 12-14 GB/卡；
+# 可尝试 micro_batch_size=16（每卡 2 个样本）提高吞吐，但必须先做一步 OOM 测试。
 torchrun --standalone --nnodes=1 --nproc_per_node=$nproc_per_node \
      -m ragen.trainer.fsdp_sft_trainer \
     data.train_files=data/MTMedDialog_sft_train.parquet \
